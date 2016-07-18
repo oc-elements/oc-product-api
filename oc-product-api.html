@@ -1,0 +1,37 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../oc-core-utils/oc-api-provider-behaviour.html">
+
+<!--
+`oc-product-api`
+Element for consuming the Ordercloud Product API
+
+@demo demo/index.html 
+-->
+
+<dom-module id="oc-product-api">
+  <template>
+    <iron-ajax id="createProduct"></iron-ajax>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'oc-product-api',
+      behaviors: [OC.Behaviours.ApiProvider],
+
+      /**
+       *
+       * @param product (see docs.ordercloud.com POST /product)
+       * @return {Promise}
+       */
+      createProduct: function(product) {
+        this.$.createProduct.url = this._url('product');
+        this.$.createProduct.method = "POST";
+        this.$.createProduct.contentType = "application/json";
+        this.$.createProduct.body = product;
+
+        return this._generateRequest(this.$.createProduct);
+      },
+    });
+  </script>
+</dom-module>
