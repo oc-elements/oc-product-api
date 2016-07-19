@@ -20,12 +20,13 @@ Element for consuming the Ordercloud Product API
       behaviors: [OC.Behaviours.ApiProvider],
 
       /**
-       *
+       * Create a new product for an Organisation
+       * @param organisationId Number
        * @param product (see docs.ordercloud.com POST /product)
        * @return {Promise}
        */
-      createProduct: function(product) {
-        this.$.createProduct.url = this._url('product');
+      createProduct: function(organisationId, product) {
+        this.$.createProduct.url = this._url('product/organisation/' + organisationId);
         this.$.createProduct.method = "POST";
         this.$.createProduct.contentType = "application/json";
         this.$.createProduct.body = product;
