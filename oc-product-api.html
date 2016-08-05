@@ -12,6 +12,7 @@ Element for consuming the Ordercloud Product API
 <dom-module id="oc-product-api">
   <template>
     <iron-ajax id="createProduct"></iron-ajax>
+    <iron-ajax id="getProducts"></iron-ajax>
   </template>
 
   <script>
@@ -33,6 +34,17 @@ Element for consuming the Ordercloud Product API
 
         return this._generateRequest(this.$.createProduct);
       },
+
+      /**
+       * Return all Products of an organisation
+       * @return {Promise}
+       */
+      getProducts: function(page, pageSize) {
+        this.$.getProducts.url = this._url('product?page=' + page + '&pagesize=' + pageSize);
+        return this._generateRequest(this.$.getProducts);
+      },
+
+
     });
   </script>
 </dom-module>
