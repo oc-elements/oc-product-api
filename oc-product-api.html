@@ -13,6 +13,8 @@ Element for consuming the Ordercloud Product API
   <template>
     <iron-ajax id="createProduct"></iron-ajax>
     <iron-ajax id="getProducts"></iron-ajax>
+    <iron-ajax id="getProductExtras"></iron-ajax>
+    <iron-ajax id="getProductOptions"></iron-ajax>
   </template>
 
   <script>
@@ -42,6 +44,26 @@ Element for consuming the Ordercloud Product API
       getProducts: function(page, pageSize) {
         this.$.getProducts.url = this._url('product?page=' + page + '&pagesize=' + pageSize);
         return this._generateRequest(this.$.getProducts);
+      },
+
+      /**
+       * Return all extras of a product
+       * @param productId Number
+       * @return {Promise}
+       */
+      getProductExtras: function(productId) {
+        this.$.getProductExtras.url = this._url('product/'+productId+'/extras/set');
+        return this._generateRequest(this.$.getProductExtras);
+      },
+
+      /**
+       * Return all option sets of a product
+       * @param productId Number
+       * @return {Promise}
+       */
+      getProductOptions: function(productId) {
+        this.$.getProductOptions.url = this._url('product/'+productId+'/options/set');
+        return this._generateRequest(this.$.getProductOptions);
       },
 
 
