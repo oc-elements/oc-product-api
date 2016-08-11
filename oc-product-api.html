@@ -14,6 +14,8 @@ Element for consuming the Ordercloud Product API
     <iron-ajax id="createProduct"></iron-ajax>
     <iron-ajax id="getProducts"></iron-ajax>
     <iron-ajax id="getProductExtraSets"></iron-ajax>
+    <iron-ajax id="addProductExtraSet"></iron-ajax>
+    <iron-ajax id="removeProductExtraSet"></iron-ajax>
     <iron-ajax id="getProductOptionSets"></iron-ajax>
     <iron-ajax id="addProductOptionSet"></iron-ajax>
     <iron-ajax id="removeProductOptionSet"></iron-ajax>
@@ -56,6 +58,32 @@ Element for consuming the Ordercloud Product API
       getProductExtraSets: function(productId) {
         this.$.getProductExtras.url = this._url('product/'+productId+'/extras/set');
         return this._generateRequest(this.$.getProductExtras);
+      },
+
+      /**
+       * Add a extra set to a product
+       * @param productId Number
+       * @param extraSetId Number
+       * @return {Promise}
+       */
+      addProductExtraSet: function(productId, extraSetId) {
+        this.$.addProductExtraSet.url = this._url('/product/'+productId+'/extras/set/'+extraSetId);
+        this.$.addProductExtraSet.method = "PUT";
+        this.$.addProductExtraSet.contentType = "application/json";
+        return this._generateRequest(this.$.addProductExtraSet);
+      },
+
+      /**
+       * Remove a extra set from product
+       * @param productId Number
+       * @param extraSetId Number
+       * @return {Promise}
+       */
+      removeProductExtraSet: function(productId, extraSetId) {
+        this.$.removeProductExtraSet.url = this._url('/product/'+productId+'/extras/set/'+extraSetId);
+        this.$.removeProductExtraSet.method = "DELETE";
+        this.$.removeProductExtraSet.contentType = "application/json";
+        return this._generateRequest(this.$.removeProductExtraSet);
       },
 
       /**
