@@ -13,8 +13,10 @@ Element for consuming the Ordercloud Product API
   <template>
     <iron-ajax id="createProduct"></iron-ajax>
     <iron-ajax id="getProducts"></iron-ajax>
-    <iron-ajax id="getProductExtras"></iron-ajax>
-    <iron-ajax id="getProductOptions"></iron-ajax>
+    <iron-ajax id="getProductExtraSets"></iron-ajax>
+    <iron-ajax id="getProductOptionSets"></iron-ajax>
+    <iron-ajax id="addProductOptionSet"></iron-ajax>
+    <iron-ajax id="removeProductOptionSet"></iron-ajax>
   </template>
 
   <script>
@@ -51,7 +53,7 @@ Element for consuming the Ordercloud Product API
        * @param productId Number
        * @return {Promise}
        */
-      getProductExtras: function(productId) {
+      getProductExtraSets: function(productId) {
         this.$.getProductExtras.url = this._url('product/'+productId+'/extras/set');
         return this._generateRequest(this.$.getProductExtras);
       },
@@ -61,9 +63,35 @@ Element for consuming the Ordercloud Product API
        * @param productId Number
        * @return {Promise}
        */
-      getProductOptions: function(productId) {
-        this.$.getProductOptions.url = this._url('product/'+productId+'/options/set');
-        return this._generateRequest(this.$.getProductOptions);
+      getProductOptionSets: function(productId) {
+        this.$.getProductOptionSets.url = this._url('product/'+productId+'/options/set');
+        return this._generateRequest(this.$.getProductOptionSets);
+      },
+
+      /**
+       * Add a option set to a product
+       * @param productId Number
+       * @param optionSetId Number
+       * @return {Promise}
+       */
+      addProductOptionSet: function(productId, optionSetId) {
+        this.$.addProductOptionSet.url = this._url('/product/'+productId+'/options/set/'+optionSetId);
+        this.$.addProductOptionSet.method = "PUT";
+        this.$.addProductOptionSet.contentType = "application/json";
+        return this._generateRequest(this.$.addProductOptionSet);
+      },
+
+      /**
+       * Remove a option set from product
+       * @param productId Number
+       * @param optionSetId Number
+       * @return {Promise}
+       */
+      removeProductOptionSet: function(productId, optionSetId) {
+        this.$.removeProductOptionSet.url = this._url('/product/'+productId+'/options/set/'+optionSetId);
+        this.$.removeProductOptionSet.method = "DELETE";
+        this.$.removeProductOptionSet.contentType = "application/json";
+        return this._generateRequest(this.$.removeProductOptionSet);
       },
 
 
