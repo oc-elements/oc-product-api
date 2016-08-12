@@ -13,6 +13,8 @@ Element for consuming the Ordercloud Product API
   <template>
     <iron-ajax id="createProduct"></iron-ajax>
     <iron-ajax id="getProducts"></iron-ajax>
+    <iron-ajax id="getProduct"></iron-ajax>
+    <iron-ajax id="updateProduct"></iron-ajax>
     <iron-ajax id="getProductExtraSets"></iron-ajax>
     <iron-ajax id="addProductExtraSet"></iron-ajax>
     <iron-ajax id="removeProductExtraSet"></iron-ajax>
@@ -20,6 +22,8 @@ Element for consuming the Ordercloud Product API
     <iron-ajax id="addProductOptionSet"></iron-ajax>
     <iron-ajax id="removeProductOptionSet"></iron-ajax>
     <iron-ajax id="updateProductAttributes"></iron-ajax>
+    <iron-ajax id="getProductTags"></iron-ajax>
+    <iron-ajax id="updateProductTags"></iron-ajax>
   </template>
 
   <script>
@@ -49,6 +53,29 @@ Element for consuming the Ordercloud Product API
       getProducts: function(page, pageSize) {
         this.$.getProducts.url = this._url('product?page=' + page + '&pagesize=' + pageSize);
         return this._generateRequest(this.$.getProducts);
+      },
+
+      /**
+       * Return a Product of an organisation
+       * @return {Promise}
+       */
+      getProduct: function(productId) {
+        this.$.getProduct.url = this._url('/product/'+productId);
+        return this._generateRequest(this.$.getProduct);
+      },
+
+      /**
+       * Add a extra set to a product
+       * @param productId Number
+       * @param extraSetId Number
+       * @return {Promise}
+       */
+      updateProduct: function(productId, params) {
+        this.$.updateProduct.url = this._url('product/'+productId);
+        this.$.updateProduct.method = "PUT";
+        this.$.updateProduct.body = params;
+        this.$.updateProduct.contentType = "application/json";
+        return this._generateRequest(this.$.updateProduct);
       },
 
       /**
@@ -135,6 +162,20 @@ Element for consuming the Ordercloud Product API
         this.$.updateProductAttributes.body = params;
         this.$.updateProductAttributes.contentType = "application/json";
         return this._generateRequest(this.$.updateProductAttributes);
+      },
+
+      /**
+       * Update product attribute
+       * @param productId Number
+       * @param params [{ name: String. value: String }] Array
+       * @return {Promise}
+       */
+      updateProductTags: function(productId, params) {
+        this.$.updateProductTags.url = this._url('/product/'+productId+'/tags');
+        this.$.updateProductTags.method = "PUT";
+        this.$.updateProductTags.body = params;
+        this.$.updateProductTags.contentType = "application/json";
+        return this._generateRequest(this.$.updateProductTags);
       },
 
 
