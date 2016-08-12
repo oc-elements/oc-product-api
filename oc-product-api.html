@@ -19,6 +19,7 @@ Element for consuming the Ordercloud Product API
     <iron-ajax id="getProductOptionSets"></iron-ajax>
     <iron-ajax id="addProductOptionSet"></iron-ajax>
     <iron-ajax id="removeProductOptionSet"></iron-ajax>
+    <iron-ajax id="updateProductAttributes"></iron-ajax>
   </template>
 
   <script>
@@ -120,6 +121,20 @@ Element for consuming the Ordercloud Product API
         this.$.removeProductOptionSet.method = "DELETE";
         this.$.removeProductOptionSet.contentType = "application/json";
         return this._generateRequest(this.$.removeProductOptionSet);
+      },
+
+      /**
+       * Update product attribute
+       * @param productId Number
+       * @param params [{ name: String. value: String }] Array
+       * @return {Promise}
+       */
+      updateProductAttributes: function(productId, params) {
+        this.$.updateProductAttributes.url = this._url('/product/'+productId+'/attribute');
+        this.$.updateProductAttributes.method = "PUT";
+        this.$.updateProductAttributes.body = params;
+        this.$.updateProductAttributes.contentType = "application/json";
+        return this._generateRequest(this.$.updateProductAttributes);
       },
 
 
