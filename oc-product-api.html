@@ -27,6 +27,7 @@ Element for consuming the Ordercloud Product API
     <iron-ajax id="getProductImages"></iron-ajax>
     <iron-ajax id="deleteProductImage"></iron-ajax>
     <iron-ajax id="setDefaultImage"></iron-ajax>
+    <iron-ajax id="getProductByCriteria"></iron-ajax>
   </template>
 
   <script>
@@ -214,6 +215,20 @@ Element for consuming the Ordercloud Product API
         this.$.setDefaultImage.method = "PUT";
         this.$.setDefaultImage.contentType = "application/json";
         return this._generateRequest(this.$.setDefaultImage);
+      },
+
+      /**
+       * returns all the Products for Criteria
+       *
+       * @param criteria (see docs.ordercloud.com POST /product/criteria)
+       * @return {Promise}
+       */
+      getProductByCriteria: function(criteria) {
+        this.$.getProductByCriteria.url = this._url('product/criteria');
+        this.$.getProductByCriteria.method = "PUT";
+        this.$.getProductByCriteria.body = criteria;
+        this.$.getProductByCriteria.contentType = "application/json";
+        return this._generateRequest(this.$.getProductByCriteria);
       },
 
     });
