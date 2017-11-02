@@ -68,6 +68,20 @@
         }
 
         /**
+         * Return all Products of an organisation
+         * @param pageSize the number of records per page
+         * @param showDisabled show disabled products
+         * @param page the page number to display
+         * @param connectionType Specify the connection relationship you have with this organisation
+         * @return {Promise}
+         */
+        getProductsByOrganisation(page, organisationId, pageSize, showDisabled, connectionType) {
+            this.$.getProductsByOrganisation.url = this._generateUrl('product/organisation/'+ organisationId +'?page=' + page
+                + '&pagesize=' + pageSize + '&showDisabled=' + showDisabled + '&connectionTypeCode=' + connectionType);
+            return this._generateRequest(this.$.getProductsByOrganisation);
+        }
+
+        /**
          * Return a Product of an organisation
          * @return {Promise}
          */
