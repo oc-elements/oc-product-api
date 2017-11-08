@@ -8,6 +8,7 @@
     <iron-ajax id="createProduct"></iron-ajax>
     <iron-ajax id="getProducts"></iron-ajax>
     <iron-ajax id="getProduct"></iron-ajax>
+    <iron-ajax id="getProductsByOrganisation"></iron-ajax>
     <iron-ajax id="updateProduct"></iron-ajax>
     <iron-ajax id="getProductExtraSets"></iron-ajax>
     <iron-ajax id="addProductExtraSet"></iron-ajax>
@@ -65,6 +66,21 @@
         getProducts(page, pageSize) {
             this.$.getProducts.url = this._generateUrl('product?page=' + page + '&pagesize=' + pageSize);
             return this._generateRequest(this.$.getProducts);
+        }
+
+        /**
+         * Return all Products of an organisation
+         * @param pageSize the number of records per page
+         * @param showDisabled show disabled products
+         * @param page the page number to display
+         * @param organisationId the id of the organisation to get produicts for
+         * @param connectionType Specify the connection relationship you have with this organisation
+         * @return {Promise}
+         */
+        getProductsByOrganisation(page,pageSize,organisationId, showDisabled, connectionType) {
+            this.$.getProductsByOrganisation.url = this._generateUrl('product/organisation/'+ organisationId +'?page=' + page
+                + '&pagesize=' + pageSize + '&showDisabled=' + showDisabled + '&connectionTypeCode=' + connectionType);
+            return this._generateRequest(this.$.getProductsByOrganisation);
         }
 
         /**
