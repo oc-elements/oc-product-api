@@ -90,7 +90,7 @@
            * @return {Promise}
            */
           getProduct(productId) {
-              this.$.getProduct.url = this._generateUrl('/product/' + productId);
+              this.$.getProduct.url = this._generateUrl('product/' + productId);
               return this._generateRequest(this.$.getProduct);
           }
 
@@ -125,7 +125,7 @@
            * @return {Promise}
            */
           addProductExtraSet(productId, extraSetId) {
-              this.$.addProductExtraSet.url = this._generateUrl('/product/' + productId + '/extras/set/' + extraSetId);
+              this.$.addProductExtraSet.url = this._generateUrl('product/' + productId + '/extras/set/' + extraSetId);
               this.$.addProductExtraSet.method = "PUT";
               this.$.addProductExtraSet.contentType = "application/json";
               return this._generateRequest(this.$.addProductExtraSet);
@@ -138,7 +138,7 @@
            * @return {Promise}
            */
           removeProductExtraSet(productId, extraSetId) {
-              this.$.removeProductExtraSet.url = this._generateUrl('/product/' + productId + '/extras/set/' + extraSetId);
+              this.$.removeProductExtraSet.url = this._generateUrl('product/' + productId + '/extras/set/' + extraSetId);
               this.$.removeProductExtraSet.method = "DELETE";
               this.$.removeProductExtraSet.contentType = "application/json";
               return this._generateRequest(this.$.removeProductExtraSet);
@@ -161,7 +161,7 @@
            * @return {Promise}
            */
           addProductOptionSet(productId, optionSetId) {
-              this.$.addProductOptionSet.url = this._generateUrl('/product/' + productId + '/options/set/' + optionSetId);
+              this.$.addProductOptionSet.url = this._generateUrl('product/' + productId + '/options/set/' + optionSetId);
               this.$.addProductOptionSet.method = "PUT";
               this.$.addProductOptionSet.contentType = "application/json";
               return this._generateRequest(this.$.addProductOptionSet);
@@ -174,7 +174,7 @@
            * @return {Promise}
            */
           removeProductOptionSet(productId, optionSetId) {
-              this.$.removeProductOptionSet.url = this._generateUrl('/product/' + productId + '/options/set/' + optionSetId);
+              this.$.removeProductOptionSet.url = this._generateUrl('product/' + productId + '/options/set/' + optionSetId);
               this.$.removeProductOptionSet.method = "DELETE";
               this.$.removeProductOptionSet.contentType = "application/json";
               return this._generateRequest(this.$.removeProductOptionSet);
@@ -187,7 +187,7 @@
            * @return {Promise}
            */
           updateProductAttributes(productId, params) {
-              this.$.updateProductAttributes.url = this._generateUrl('/product/' + productId + '/attribute');
+              this.$.updateProductAttributes.url = this._generateUrl('product/' + productId + '/attribute');
               this.$.updateProductAttributes.method = "PUT";
               this.$.updateProductAttributes.body = params;
               this.$.updateProductAttributes.contentType = "application/json";
@@ -201,7 +201,7 @@
            * @return {Promise}
            */
           updateProductTags(productId, params) {
-              this.$.updateProductTags.url = this._generateUrl('/product/' + productId + '/tags');
+              this.$.updateProductTags.url = this._generateUrl('product/' + productId + '/tags');
               this.$.updateProductTags.method = "PUT";
               this.$.updateProductTags.body = params;
               this.$.updateProductTags.contentType = "application/json";
