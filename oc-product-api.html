@@ -28,236 +28,272 @@
   </template>
 
   <script>
-    /**
-     * `oc-product-api`
-     * Element for consuming the Ordercloud Product API
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
+      /**
+       * `oc-product-api`
+       * Element for consuming the Ordercloud Product API
+       *
+       * @customElement
+       * @polymer
+       * @demo demo/index.html
+       */
 
-    class OcProductApi extends Ordercloud.ApiMixin(Polymer.Element) {
-        static get is() {
-            return 'oc-product-api';
-        }
+      class OcProductApi extends Ordercloud.ApiMixin(Polymer.Element) {
+          static get is() {
+              return 'oc-product-api';
+          }
 
-        static get properties() {
-                return {};
-            }
+          static get properties() {
+              return {};
+          }
 
 
-        /**
-         * Create a new product for an Organisation
-         * @param organisationId Number
-         * @param product (see docs.ordercloud.com POST /product)
-         * @return {Promise}
-         */
-        createProduct(organisationId, product) {
-            this.$.createProduct.url = this._generateUrl('product/organisation/' + organisationId);
-            this.$.createProduct.method = "POST";
-            this.$.createProduct.contentType = "application/json";
-            this.$.createProduct.body = product;
-            return this._generateRequest(this.$.createProduct);
-        }
+          /**
+           * Create a new product for an Organisation
+           * @param organisationId Number
+           * @param product (see docs.ordercloud.com POST /product)
+           * @return {Promise}
+           */
+          createProduct(organisationId, product) {
+              this.$.createProduct.url = this._generateUrl('product/organisation/' + organisationId);
+              this.$.createProduct.method = "POST";
+              this.$.createProduct.contentType = "application/json";
+              this.$.createProduct.body = product;
+              return this._generateRequest(this.$.createProduct);
+          }
 
-        /**
-         * Return all Products of an organisation
-         * @return {Promise}
-         */
-        getProducts(page, pageSize) {
-            this.$.getProducts.url = this._generateUrl('product?page=' + page + '&pagesize=' + pageSize);
-            return this._generateRequest(this.$.getProducts);
-        }
+          /**
+           * Return all Products of an organisation
+           * @return {Promise}
+           */
+          getProducts(page, pageSize) {
+              this.$.getProducts.url = this._generateUrl('product?page=' + page + '&pagesize=' + pageSize);
+              return this._generateRequest(this.$.getProducts);
+          }
 
-        /**
-         * Return all Products of an organisation
-         * @param pageSize the number of records per page
-         * @param showDisabled show disabled products
-         * @param page the page number to display
-         * @param organisationId the id of the organisation to get produicts for
-         * @param connectionType Specify the connection relationship you have with this organisation
-         * @return {Promise}
-         */
-        getProductsByOrganisation(page,pageSize,organisationId, showDisabled, connectionType) {
-            this.$.getProductsByOrganisation.url = this._generateUrl('product/organisation/'+ organisationId +'?page=' + page
-                + '&pagesize=' + pageSize + '&showDisabled=' + showDisabled + '&connectionTypeCode=' + connectionType);
-            return this._generateRequest(this.$.getProductsByOrganisation);
-        }
+          /**
+           * Return all Products of an organisation
+           * @param pageSize the number of records per page
+           * @param showDisabled show disabled products
+           * @param page the page number to display
+           * @param organisationId the id of the organisation to get produicts for
+           * @param connectionType Specify the connection relationship you have with this organisation
+           * @return {Promise}
+           */
+          getProductsByOrganisation(page,pageSize,organisationId, showDisabled, connectionType) {
+              this.$.getProductsByOrganisation.url = this._generateUrl('product/organisation/'+ organisationId +'?page=' + page
+                  + '&pagesize=' + pageSize + '&showDisabled=' + showDisabled + '&connectionTypeCode=' + connectionType);
+              return this._generateRequest(this.$.getProductsByOrganisation);
+          }
 
-        /**
-         * Return a Product of an organisation
-         * @return {Promise}
-         */
-        getProduct(productId) {
-            this.$.getProduct.url = this._generateUrl('/product/' + productId);
-            return this._generateRequest(this.$.getProduct);
-        }
+          /**
+           * Return a Product of an organisation
+           * @return {Promise}
+           */
+          getProduct(productId) {
+              this.$.getProduct.url = this._generateUrl('/product/' + productId);
+              return this._generateRequest(this.$.getProduct);
+          }
 
-        /**
-         * Add a extra set to a product
-         * @param productId Number
-         * @param params (see docs.ordercloud.com POST /product)
-         * @return {Promise}
-         */
-        updateProduct(productId, params) {
-            this.$.updateProduct.url = this._generateUrl('product/' + productId);
-            this.$.updateProduct.method = "PUT";
-            this.$.updateProduct.body = params;
-            this.$.updateProduct.contentType = "application/json";
-            return this._generateRequest(this.$.updateProduct);
-        }
+          /**
+           * Add a extra set to a product
+           * @param productId Number
+           * @param params (see docs.ordercloud.com POST /product)
+           * @return {Promise}
+           */
+          updateProduct(productId, params) {
+              this.$.updateProduct.url = this._generateUrl('product/' + productId);
+              this.$.updateProduct.method = "PUT";
+              this.$.updateProduct.body = params;
+              this.$.updateProduct.contentType = "application/json";
+              return this._generateRequest(this.$.updateProduct);
+          }
 
-        /**
-         * Return all extras of a product
-         * @param productId Number
-         * @return {Promise}
-         */
-        getProductExtraSets(productId) {
-            this.$.getProductExtras.url = this._generateUrl('product/' + productId + '/extras/set');
-            return this._generateRequest(this.$.getProductExtras);
-        }
+          /**
+           * Return all extras of a product
+           * @param productId Number
+           * @return {Promise}
+           */
+          getProductExtraSets(productId) {
+              this.$.getProductExtras.url = this._generateUrl('product/' + productId + '/extras/set');
+              return this._generateRequest(this.$.getProductExtras);
+          }
 
-        /**
-         * Add a extra set to a product
-         * @param productId Number
-         * @param extraSetId Number
-         * @return {Promise}
-         */
-        addProductExtraSet(productId, extraSetId) {
-            this.$.addProductExtraSet.url = this._generateUrl('/product/' + productId + '/extras/set/' + extraSetId);
-            this.$.addProductExtraSet.method = "PUT";
-            this.$.addProductExtraSet.contentType = "application/json";
-            return this._generateRequest(this.$.addProductExtraSet);
-        }
+          /**
+           * Add a extra set to a product
+           * @param productId Number
+           * @param extraSetId Number
+           * @return {Promise}
+           */
+          addProductExtraSet(productId, extraSetId) {
+              this.$.addProductExtraSet.url = this._generateUrl('/product/' + productId + '/extras/set/' + extraSetId);
+              this.$.addProductExtraSet.method = "PUT";
+              this.$.addProductExtraSet.contentType = "application/json";
+              return this._generateRequest(this.$.addProductExtraSet);
+          }
 
-        /**
-         * Remove a extra set from product
-         * @param productId Number
-         * @param extraSetId Number
-         * @return {Promise}
-         */
-        removeProductExtraSet(productId, extraSetId) {
-            this.$.removeProductExtraSet.url = this._generateUrl('/product/' + productId + '/extras/set/' + extraSetId);
-            this.$.removeProductExtraSet.method = "DELETE";
-            this.$.removeProductExtraSet.contentType = "application/json";
-            return this._generateRequest(this.$.removeProductExtraSet);
-        }
+          /**
+           * Remove a extra set from product
+           * @param productId Number
+           * @param extraSetId Number
+           * @return {Promise}
+           */
+          removeProductExtraSet(productId, extraSetId) {
+              this.$.removeProductExtraSet.url = this._generateUrl('/product/' + productId + '/extras/set/' + extraSetId);
+              this.$.removeProductExtraSet.method = "DELETE";
+              this.$.removeProductExtraSet.contentType = "application/json";
+              return this._generateRequest(this.$.removeProductExtraSet);
+          }
 
-        /**
-         * Return all option sets of a product
-         * @param productId Number
-         * @return {Promise}
-         */
-        getProductOptionSets(productId) {
-            this.$.getProductOptionSets.url = this._generateUrl('product/' + productId + '/options/set');
-            return this._generateRequest(this.$.getProductOptionSets);
-        }
+          /**
+           * Return all option sets of a product
+           * @param productId Number
+           * @return {Promise}
+           */
+          getProductOptionSets(productId) {
+              this.$.getProductOptionSets.url = this._generateUrl('product/' + productId + '/options/set');
+              return this._generateRequest(this.$.getProductOptionSets);
+          }
 
-        /**
-         * Add a option set to a product
-         * @param productId Number
-         * @param optionSetId Number
-         * @return {Promise}
-         */
-        addProductOptionSet(productId, optionSetId) {
-            this.$.addProductOptionSet.url = this._generateUrl('/product/' + productId + '/options/set/' + optionSetId);
-            this.$.addProductOptionSet.method = "PUT";
-            this.$.addProductOptionSet.contentType = "application/json";
-            return this._generateRequest(this.$.addProductOptionSet);
-        }
+          /**
+           * Add a option set to a product
+           * @param productId Number
+           * @param optionSetId Number
+           * @return {Promise}
+           */
+          addProductOptionSet(productId, optionSetId) {
+              this.$.addProductOptionSet.url = this._generateUrl('/product/' + productId + '/options/set/' + optionSetId);
+              this.$.addProductOptionSet.method = "PUT";
+              this.$.addProductOptionSet.contentType = "application/json";
+              return this._generateRequest(this.$.addProductOptionSet);
+          }
 
-        /**
-         * Remove a option set from product
-         * @param productId Number
-         * @param optionSetId Number
-         * @return {Promise}
-         */
-        removeProductOptionSet(productId, optionSetId) {
-            this.$.removeProductOptionSet.url = this._generateUrl('/product/' + productId + '/options/set/' + optionSetId);
-            this.$.removeProductOptionSet.method = "DELETE";
-            this.$.removeProductOptionSet.contentType = "application/json";
-            return this._generateRequest(this.$.removeProductOptionSet);
-        }
+          /**
+           * Remove a option set from product
+           * @param productId Number
+           * @param optionSetId Number
+           * @return {Promise}
+           */
+          removeProductOptionSet(productId, optionSetId) {
+              this.$.removeProductOptionSet.url = this._generateUrl('/product/' + productId + '/options/set/' + optionSetId);
+              this.$.removeProductOptionSet.method = "DELETE";
+              this.$.removeProductOptionSet.contentType = "application/json";
+              return this._generateRequest(this.$.removeProductOptionSet);
+          }
 
-        /**
-         * Update product attribute
-         * @param productId Number
-         * @param params [{ name: String. value: String }] Array
-         * @return {Promise}
-         */
-        updateProductAttributes(productId, params) {
-            this.$.updateProductAttributes.url = this._generateUrl('/product/' + productId + '/attribute');
-            this.$.updateProductAttributes.method = "PUT";
-            this.$.updateProductAttributes.body = params;
-            this.$.updateProductAttributes.contentType = "application/json";
-            return this._generateRequest(this.$.updateProductAttributes);
-        }
+          /**
+           * Update product attribute
+           * @param productId Number
+           * @param params [{ name: String. value: String }] Array
+           * @return {Promise}
+           */
+          updateProductAttributes(productId, params) {
+              this.$.updateProductAttributes.url = this._generateUrl('/product/' + productId + '/attribute');
+              this.$.updateProductAttributes.method = "PUT";
+              this.$.updateProductAttributes.body = params;
+              this.$.updateProductAttributes.contentType = "application/json";
+              return this._generateRequest(this.$.updateProductAttributes);
+          }
 
-        /**
-         * Update product attribute
-         * @param productId Number
-         * @param params [{ name: String. value: String }] Array
-         * @return {Promise}
-         */
-        updateProductTags(productId, params) {
-            this.$.updateProductTags.url = this._generateUrl('/product/' + productId + '/tags');
-            this.$.updateProductTags.method = "PUT";
-            this.$.updateProductTags.body = params;
-            this.$.updateProductTags.contentType = "application/json";
-            return this._generateRequest(this.$.updateProductTags);
-        }
+          /**
+           * Update product attribute
+           * @param productId Number
+           * @param params [{ name: String. value: String }] Array
+           * @return {Promise}
+           */
+          updateProductTags(productId, params) {
+              this.$.updateProductTags.url = this._generateUrl('/product/' + productId + '/tags');
+              this.$.updateProductTags.method = "PUT";
+              this.$.updateProductTags.body = params;
+              this.$.updateProductTags.contentType = "application/json";
+              return this._generateRequest(this.$.updateProductTags);
+          }
 
-        /**
-         * Return all images for a product
-         * @param productId Number
-         * @return {Promise}
-         */
-        getProductImages(productId) {
-            this.$.getProductImages.url = this._generateUrl('product/' + productId + '/images');
-            return this._generateRequest(this.$.getProductImages);
-        }
+          /**
+           * Return all images for a product
+           * @param productId Number
+           * @return {Promise}
+           */
+          getProductImages(productId) {
+              this.$.getProductImages.url = this._generateUrl('product/' + productId + '/images');
+              return this._generateRequest(this.$.getProductImages);
+          }
 
-        /**
-         * Delete product image
-         * @param productId Number
-         * @param imageName path
-         * @return {Promise}
-         */
-        deleteProductImage(productId, imageName) {
-            this.$.deleteProductImage.url = this._generateUrl('/product/' + productId + '/image/' + imageName);
-            this.$.deleteProductImage.method = "DELETE";
-            return this._generateRequest(this.$.deleteProductImage);
-        }
+          /**
+           * Delete product image
+           * @param productId Number
+           * @param imageName path
+           * @return {Promise}
+           */
+          deleteProductImage(productId, imageName) {
+              this.$.deleteProductImage.url = this._generateUrl('/product/' + productId + '/image/' + imageName);
+              this.$.deleteProductImage.method = "DELETE";
+              return this._generateRequest(this.$.deleteProductImage);
+          }
 
-        /**
-         * Set Image as default
-         * @param productId Number
-         * @param imageName path
-         * @return {Promise}
-         */
-        setDefaultImage(productId, imageName) {
-            this.$.setDefaultImage.url = this._generateUrl('product/' + productId + '/image/' + imageName + '/default');
-            this.$.setDefaultImage.method = "PUT";
-            this.$.setDefaultImage.contentType = "application/json";
-            return this._generateRequest(this.$.setDefaultImage);
-        }
+          /**
+           * Set Image as default
+           * @param productId Number
+           * @param imageName path
+           * @return {Promise}
+           */
+          setDefaultImage(productId, imageName) {
+              this.$.setDefaultImage.url = this._generateUrl('product/' + productId + '/image/' + imageName + '/default');
+              this.$.setDefaultImage.method = "PUT";
+              this.$.setDefaultImage.contentType = "application/json";
+              return this._generateRequest(this.$.setDefaultImage);
+          }
 
-        /**
-         * returns all the Products for Criteria
-         *
-         * @param criteria (see docs.ordercloud.com POST /product/criteria)
-         * @return {Promise}
-         */
-        getProductByCriteria(criteria) {
-            this.$.getProductByCriteria.url = this._generateUrl('product/criteria');
-            this.$.getProductByCriteria.method = "PUT";
-            this.$.getProductByCriteria.body = criteria;
-            this.$.getProductByCriteria.contentType = "application/json";
-            return this._generateRequest(this.$.getProductByCriteria);
-        }
-    }
+          /**
+           * returns all the Products for Criteria
+           *
+           * @param criteria (see docs.ordercloud.com POST /product/criteria)
+           * @return {Promise}
+           */
+          getProductByCriteria(criteria) {
+              this.$.getProductByCriteria.url = this._generateUrl('product/criteria');
+              this.$.getProductByCriteria.method = "PUT";
+              this.$.getProductByCriteria.body = criteria;
+              this.$.getProductByCriteria.contentType = "application/json";
+              return this._generateRequest(this.$.getProductByCriteria);
+          }
 
-    window.customElements.define(OcProductApi.is, OcProductApi);
+
+          /**
+           * Get All Tags for organisation
+           * @param organisationId
+           * @param page page to display
+           * @param pagesize number of required
+           * @param showDisabled true
+           * @return {Promise}
+           */
+          getProductTags(organisationId, page, pagesize, showDisabled) {
+              this.$.updateProductTags.url = this._generateUrl('/product/tag/' + organisationId + '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
+              this.$.updateProductTags.method = "GET";
+              this.$.updateProductTags.body = params;
+              this.$.updateProductTags.contentType = "application/json";
+              return this._generateRequest(this.$.updateProductTags);
+          }
+
+
+          /**
+           * Get All Tags for organisation
+           * @param organisationId
+           * @param page page to display
+           * @param pagesize number of required
+           * @param showDisabled true
+           * @param tagType the tagType name
+           * @return {Promise}
+           */
+          getProductTagsByType(organisationId, page, pagesize, showDisabled, tagType) {
+              this.$.updateProductTags.url = this._generateUrl('/product/tag/' + organisationId + '/tag/' + tagType+ '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
+              this.$.updateProductTags.method = "GET";
+              this.$.updateProductTags.body = params;
+              this.$.updateProductTags.contentType = "application/json";
+              return this._generateRequest(this.$.updateProductTags);
+          }
+
+      }
+
+      window.customElements.define(OcProductApi.is, OcProductApi);
   </script>
 </dom-module>
