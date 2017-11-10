@@ -267,9 +267,8 @@
            * @return {Promise}
            */
           getProductTags(organisationId, page, pagesize, showDisabled) {
-              this.$.updateProductTags.url = this._generateUrl('/product/tag/' + organisationId + '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
+              this.$.updateProductTags.url = this._generateUrl('product/tag/' + organisationId + '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
               this.$.updateProductTags.method = "GET";
-              this.$.updateProductTags.body = params;
               this.$.updateProductTags.contentType = "application/json";
               return this._generateRequest(this.$.updateProductTags);
           }
@@ -285,9 +284,8 @@
            * @return {Promise}
            */
           getProductTagsByType(organisationId, page, pagesize, showDisabled, tagType) {
-              this.$.updateProductTags.url = this._generateUrl('/product/tag/' + organisationId + '/tag/' + tagType+ '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
+              this.$.updateProductTags.url = this._generateUrl('product/tag/' + organisationId + '/tag/' + tagType+ '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
               this.$.updateProductTags.method = "GET";
-              this.$.updateProductTags.body = params;
               this.$.updateProductTags.contentType = "application/json";
               return this._generateRequest(this.$.updateProductTags);
           }
