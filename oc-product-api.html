@@ -266,7 +266,7 @@
            * @param showDisabled true
            * @return {Promise}
            */
-          getProductTags(organisationId, page, pagesize, showDisabled) {
+          getProductTags(organisationId, page, pagesize, showDisabled){
               this.$.updateProductTags.url = this._generateUrl('product/tag/' + organisationId + '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
               this.$.updateProductTags.method = "GET";
               this.$.updateProductTags.contentType = "application/json";
@@ -280,11 +280,13 @@
            * @param page page to display
            * @param pagesize number of required
            * @param showDisabled true
+           * @param showEmpty show categories without products attached
            * @param tagType the tagType name
            * @return {Promise}
            */
-          getProductTagsByType(organisationId, page, pagesize, showDisabled, tagType) {
-              this.$.updateProductTags.url = this._generateUrl('product/tag/organisation/' + organisationId + '/type/' + tagType+ '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled);
+          getProductTagsByType(organisationId, page, pagesize, showDisabled, showEmpty, tagType) {
+              this.$.updateProductTags.url = this._generateUrl('product/tag/organisation/' + organisationId
+                  + '/type/' + tagType+ '?page=' + page +'&pagesize=' + pagesize +'&showDisabled='+showDisabled+'&showEmpty='+showEmpty)
               this.$.updateProductTags.method = "GET";
               this.$.updateProductTags.contentType = "application/json";
               return this._generateRequest(this.$.updateProductTags);
