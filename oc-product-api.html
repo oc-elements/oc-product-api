@@ -77,12 +77,13 @@
            * @param page the page number to display
            * @param organisationId the id of the organisation to get produicts for
            * @param connectionType Specify the connection relationship you have with this organisation
+           * @param marketplace whether to use the marketplace clientId
            * @return {Promise}
            */
-          getProductsByOrganisation(page,pageSize,organisationId, showDisabled, connectionType) {
+          getProductsByOrganisation(page,pageSize,organisationId, showDisabled, connectionType, marketplace) {
               this.$.getProductsByOrganisation.url = this._generateUrl('product/organisation/'+ organisationId +'?page=' + page
                   + '&pagesize=' + pageSize + '&showDisabled=' + showDisabled + '&connectionTypeCode=' + connectionType);
-              return this._generateRequest(this.$.getProductsByOrganisation);
+              return this._generateRequest(this.$.getProductsByOrganisation, marketplace);
           }
 
           /**
