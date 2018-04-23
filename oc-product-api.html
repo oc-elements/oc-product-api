@@ -29,6 +29,7 @@
         <iron-ajax id="updateProductTags"></iron-ajax>
         <iron-ajax id="getProductImages"></iron-ajax>
         <iron-ajax id="deleteProductImage"></iron-ajax>
+        <iron-ajax id="addProductImage"></iron-ajax>
         <iron-ajax id="setDefaultImage"></iron-ajax>
         <iron-ajax id="getProductByCriteria"></iron-ajax>
         <iron-ajax id="getProductTags"></iron-ajax>
@@ -320,6 +321,20 @@
 				this.$.deleteProductImage.url = this._generateUrl('/product/' + productId + '/image/' + imageName);
 				this.$.deleteProductImage.method = 'DELETE';
 				return this._generateRequest(this.$.deleteProductImage);
+			}
+
+			/**
+			 * Add product image
+			 * @param productId Number
+			 * @param file formData
+			 * @return {Promise}
+			 */
+			addProductImage(productId, file) {
+				this.$.addProductImage.url = this._generateUrl(`product/${productId}/image`);
+				this.$.addProductImage.method = 'PUT';
+				this.$.addProductImage.contentType = undefined;
+				this.$.addProductImage.body = file;
+				return this._generateRequest(this.$.addProductImage);
 			}
 
 			/**
