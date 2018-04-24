@@ -91,7 +91,8 @@
 			 */
 			getProductsByOrganisation(page, pageSize, organisationId, showDisabled, connectionType, marketplace) {
 				this.$.getProductsByOrganisation.url = this._generateUrl('product/organisation/' + organisationId + '?page=' + page
-					+ '&pagesize=' + pageSize + '&showDisabled=' + showDisabled + '&connectionTypeCode=' + connectionType);
+					+ '&pagesize=' + pageSize + '&showDisabled=' + showDisabled + '&connectionTypeCode=' + connectionType
+					+ '&sort=position-asc');
 				return this._generateRequest(this.$.getProductsByOrganisation, marketplace);
 			}
 
