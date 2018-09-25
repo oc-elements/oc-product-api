@@ -4,39 +4,39 @@
 
 
 <dom-module id="oc-product-api">
-    <template>
-        <iron-ajax id="createProduct"></iron-ajax>
-        <iron-ajax id="getProducts"></iron-ajax>
-        <iron-ajax id="getProduct"></iron-ajax>
-        <iron-ajax id="getProductsByOrganisation"></iron-ajax>
-        <iron-ajax id="updateProduct"></iron-ajax>
-        <!-- EXTRAS -->
-        <iron-ajax id="getAllExtrasSetsByOrganisation"></iron-ajax>
-        <iron-ajax id="getProductExtraSets"></iron-ajax>
-        <iron-ajax id="addProductExtraSet"></iron-ajax>
-        <iron-ajax id="addExtrasSet"></iron-ajax>
-        <iron-ajax id="addExtras"></iron-ajax>
-        <iron-ajax id="removeProductExtraSet"></iron-ajax>
-        <!-- OPTIONS -->
-        <iron-ajax id="getAllOptionsSetsByOrganisation"></iron-ajax>
-        <iron-ajax id="getProductOptionSets"></iron-ajax>
-        <iron-ajax id="addProductOptionSet"></iron-ajax>
-        <iron-ajax id="addOptionsSet"></iron-ajax>
-        <iron-ajax id="addProductOption"></iron-ajax>
-        <iron-ajax id="removeProductOptionSet"></iron-ajax>
+	<template>
+		<iron-ajax id="createProduct"></iron-ajax>
+		<iron-ajax id="getProducts"></iron-ajax>
+		<iron-ajax id="getProduct"></iron-ajax>
+		<iron-ajax id="getProductsByOrganisation"></iron-ajax>
+		<iron-ajax id="updateProduct"></iron-ajax>
+		<!-- EXTRAS -->
+		<iron-ajax id="getAllExtrasSetsByOrganisation"></iron-ajax>
+		<iron-ajax id="getProductExtraSets"></iron-ajax>
+		<iron-ajax id="addProductExtraSet"></iron-ajax>
+		<iron-ajax id="addExtrasSet"></iron-ajax>
+		<iron-ajax id="addExtras"></iron-ajax>
+		<iron-ajax id="removeProductExtraSet"></iron-ajax>
+		<!-- OPTIONS -->
+		<iron-ajax id="getAllOptionsSetsByOrganisation"></iron-ajax>
+		<iron-ajax id="getProductOptionSets"></iron-ajax>
+		<iron-ajax id="addProductOptionSet"></iron-ajax>
+		<iron-ajax id="addOptionsSet"></iron-ajax>
+		<iron-ajax id="addProductOption"></iron-ajax>
+		<iron-ajax id="removeProductOptionSet"></iron-ajax>
 
-        <iron-ajax id="updateProductAttributes"></iron-ajax>
-        <iron-ajax id="updateProductTags"></iron-ajax>
-        <iron-ajax id="getProductImages"></iron-ajax>
-        <iron-ajax id="deleteProductImage"></iron-ajax>
-        <iron-ajax id="addProductImage"></iron-ajax>
-        <iron-ajax id="setDefaultImage"></iron-ajax>
-        <iron-ajax id="getProductByCriteria"></iron-ajax>
-        <iron-ajax id="getProductTags"></iron-ajax>
-        <iron-ajax id="getProductTagsByType"></iron-ajax>
-    </template>
+		<iron-ajax id="updateProductAttributes"></iron-ajax>
+		<iron-ajax id="updateProductTags"></iron-ajax>
+		<iron-ajax id="getProductImages"></iron-ajax>
+		<iron-ajax id="deleteProductImage"></iron-ajax>
+		<iron-ajax id="addProductImage"></iron-ajax>
+		<iron-ajax id="setDefaultImage"></iron-ajax>
+		<iron-ajax id="getProductByCriteria"></iron-ajax>
+		<iron-ajax id="getProductTags"></iron-ajax>
+		<iron-ajax id="getProductTagsByType"></iron-ajax>
+	</template>
 
-    <script>
+	<script>
 		/**
 		 * `oc-product-api`
 		 * Element for consuming the Ordercloud Product API
@@ -319,7 +319,7 @@
 			 * @return {Promise}
 			 */
 			deleteProductImage(productId, imageName) {
-				this.$.deleteProductImage.url = this._generateUrl('/product/' + productId + '/image/' + imageName);
+				this.$.deleteProductImage.url = this._generateUrl('product/' + productId + '/image/' + imageName);
 				this.$.deleteProductImage.method = 'DELETE';
 				return this._generateRequest(this.$.deleteProductImage);
 			}
@@ -404,5 +404,5 @@
 		}
 
 		window.customElements.define(OcProductApi.is, OcProductApi);
-    </script>
+	</script>
 </dom-module>
