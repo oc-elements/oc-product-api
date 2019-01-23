@@ -206,7 +206,7 @@
 			 */
 			getAllOptionsSetsByOrganisation(page, pageSize, showDisabled, connectionType) {
 				this.$.getAllOptionsSetsByOrganisation.url = this._generateUrl(`product/options/set?page=${page}` +
-					`&pagesize=${pageSize}&showDisabled=${showDisabled}&connectionTypeCode=${connectionType}`);
+						`&pagesize=${pageSize}&showDisabled=${showDisabled}&connectionTypeCode=${connectionType}`);
 
 				return this._generateRequest(this.$.getAllOptionsSetsByOrganisation);
 			}
@@ -357,8 +357,8 @@
 			 * @param criteria (see docs.ordercloud.com POST /product/criteria)
 			 * @return {Promise}
 			 */
-			getProductByCriteria(criteria) {
-				this.$.getProductByCriteria.url = this._generateUrl('product/criteria');
+			getProductByCriteria(criteria, page, pageSize) {
+				this.$.getProductByCriteria.url = this._generateUrl('product/criteria' + '?page=' + page + '&pagesize=' + pageSize);
 				this.$.getProductByCriteria.method = 'PUT';
 				this.$.getProductByCriteria.body = criteria;
 				this.$.getProductByCriteria.contentType = 'application/json';
