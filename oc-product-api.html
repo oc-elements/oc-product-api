@@ -360,7 +360,7 @@
 			getProductByCriteria(criteria, page, pageSize) {
 				this.$.getProductByCriteria.url = this._generateUrl('product/criteria' + '?page=' + page + '&pagesize=' + pageSize);
 				this.$.getProductByCriteria.method = 'PUT';
-				this.$.getProductByCriteria.body = criteria;
+				this.$.getProductByCriteria.body = {...criteria, "order" : ["position"] };
 				this.$.getProductByCriteria.contentType = 'application/json';
 				return this._generateRequest(this.$.getProductByCriteria);
 			}
